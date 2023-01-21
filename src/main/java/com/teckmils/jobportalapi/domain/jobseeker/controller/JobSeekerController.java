@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class JobSeekerController {
-    @GetMapping("/profile")
+    @GetMapping("/jobSeekerDetails")
     public String getJobSeekerDetails() {
         return "Here is your profile";
     }
