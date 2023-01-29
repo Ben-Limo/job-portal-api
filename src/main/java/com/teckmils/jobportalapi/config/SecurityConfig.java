@@ -21,11 +21,11 @@ import javax.sql.DataSource;
 public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+        http.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/applications", "/jobSeekerDetails", "/rating", "/recruiter")
                 .authenticated()
-                .requestMatchers("/jobs").permitAll()
+                .requestMatchers("/jobs", "/register").permitAll()
                 .and()
                 .formLogin()
                 .and()

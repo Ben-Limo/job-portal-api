@@ -1,6 +1,7 @@
 package com.teckmils.jobportalapi.domain._user.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,12 +11,15 @@ import java.sql.Timestamp;
 @Table(name = "_users")
 public class _User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int id;
-
-    private String email;
-    private String password;
+    @NotNull
+    private final String email;
+    @NotNull
+    private final String password;
+    @Column(columnDefinition = "integer default 1")
     private int enabled;
+    @Column(columnDefinition = "varchar(255) default 'user'")
     private String role;
 
     @Column(name = "created_at", nullable = false)
@@ -25,6 +29,11 @@ public class _User {
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
     private Timestamp updatedAt;
+
+    public _User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     public int getId() {
         return id;
@@ -38,17 +47,10 @@ public class _User {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public int getEnabled() {
         return enabled;

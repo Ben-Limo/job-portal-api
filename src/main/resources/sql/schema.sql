@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS _users;
 DROP TABLE IF EXISTS authorities;
 
 CREATE TABLE _users
